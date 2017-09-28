@@ -1,0 +1,30 @@
+<h3> List of Products</h3>
+<form class="well">
+  <input placeholder="Product Name" [(ngModel)] = "formProduct.name" name="name">
+  <input placeholder="Desc" [(ngModel)] = "formProduct.desc" name="desc">
+
+  <input placeholder="price" [(ngModel)] = "formProduct.price" name="price">
+  <button class="btn btn-primary" *ngIf="!isUpdate" (click)="saveProduct()"> Save Product</button>
+  <button class="btn btn-primary" *ngIf="isUpdate" (click)="saveProduct()"> Update Product</button>
+
+</form>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>ID </th><th> Name</th> <th> Price</th> <th> Desc</th> <th> Action</th>
+  </tr>
+  <tr *ngFor="let product of  products">
+    <td> {{product.id}}</td>
+
+    <td> {{product.name}}</td>
+    <td> {{product.price}}</td>
+    <td> {{product.desc}}</td>
+    <td>  <button class="btn btn-danger" (click)="deleteProduct(product.id)"> Delete Product</button>
+      <button class="btn btn-success" (click)="populateProduct(product)"> Update Product</button></td>
+  </tr>
+  <tr *ngIf=" products.length === 0">
+    <td colspan="3"> No Product</td>
+  </tr>
+
+
+</table>
